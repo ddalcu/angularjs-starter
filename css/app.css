@@ -1,0 +1,83 @@
+body {
+  padding-top: 50px;
+}
+body > .container {
+  margin-top: 40px;
+}
+.box {
+    border: 1px solid #DDD;
+    padding: 10px;
+    border-radius: 4px;
+
+}
+
+.pagination>li>a.selected,.pagination>li>span.selected {
+  background-color: #23527c;
+  color: #FFF;
+}
+
+
+#no-results {
+  margin-bottom: 0px;
+}
+#welcome {
+  color: #FFF;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+.table tbody tr.active {
+  background-color: #FFFFAA;
+}
+
+.actions a {
+  margin-right: 10px;
+}
+
+.error {
+    color: #FA787E;
+}
+
+/*
+Bootstrap overrides
+*/
+.form-control {
+    border-color: #DDD;
+    font-size: 12px;
+    border-radius: 4px;
+}
+.alert-info {
+    background-color: #EEE;
+    border-color: #CDCDCD;
+    color: #000;
+    padding: 8px;
+}
+.btn-primary {
+    background-color: #555;
+    color: #FFF;
+    border-radius: 2px;
+    border-color: #555;
+}
+.btn-default {
+  background-color: #ECECEC;
+  border-color: #ECECEC;
+}
+h1,h2,h3,h4,h5 {
+  font-family: 'Arial';
+  font-size: 18px;
+  color: #AAA;
+}
+.table thead {
+  background-color: #ECECEC;
+  font-size: 12px;
+}
+.table thead th {
+  border-right: 1px solid #CDCDCD;
+}
+.table tbody tr:hover {
+  background-color: #FFFFBB;
+}
+
+.navbar-inverse {
+  background-color: #555;
+}

@@ -1,0 +1,94 @@
+        <h3>Customer Search</h3>
+        <div class="box">
+            <div id="customer-search">
+                <p class="alert alert-info"><i class="glyphicon glyphicon-info-sign"></i>Please enter the search criteria and the grid will automatically filter the data.</p>
+            </div>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="sr-only" for="first-name">First Name</label>
+                    <input type="text" class="form-control" id="first-name" placeholder="First Name" ng-model="userSearch.firstName">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="last-name">Last Name</label>
+                    <input type="text" class="form-control" id="last-name" placeholder="Last Name" ng-model="userSearch.lastName">
+                </div>
+                <!-- SEARCH BUTTON, un-used since everything is client-side in this version
+                <div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                 -->
+            </form>
+        </div>
+
+        <h3>Search Results {{(data | filter:userSearch).length}}</h3>
+        <div class="box">
+        
+            <p id="no-results" class="alert alert-warning" ng-show="(data | filter:userSearch).length==0">
+                No results found
+            </p>
+            <div class="table-responsive" ng-show="(data | filter:userSearch).length>0">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                          <th>Actions</th>
+                          <th>First name</th>
+                          <th>Last name</th>
+                          <th>Nickname</th>
+                          <th>Marital Status</th>
+                          <th>Middle name</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="user in data | filter:userSearch | startFrom:currentPage*pageSize | limitTo:pageSize">
+                        <td class="actions">
+                            <a href="#/user/edit/1/" ng-click="edit(user)" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <a href="" ng-click="showDeleteModal(user)" title="Delete"><i class="glyphicon glyphicon-trash"></i></a>
+                        </td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.nickName}}</td>
+                        <td>{{user.maritalStatus}}</td>
+                        <td>{{user.middleName}}</td>
+                    </tr>
+                </table>
+                <nav ng-show="userSearch.firstName.length==0&&userSearch.lastName.length==0">
+                    <ul class="pagination">
+                        <li><a href="" ng-click="currentPage=0"><span>&laquo;</span></a></li>
+                        <li>
+                          <a href="" ng-disabled="currentPage == 0" ng-click="previousPage()">
+                            <span>&laquo;</span>
+                          </a>
+                        </li>
+                        <li ng-repeat="i in numberOfPages() track by $index">
+                            <a href="" ng-click="setPage($index)" ng-class="{'selected': currentPage == $index}">{{$index+1}}</a>
+                        </li>
+                        <li>
+                          <a href="" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="nextPage()">
+                            <span>&raquo;</span>
+                          </a>
+                        </li>
+                        <li><a href="" ng-click="currentPage=data.length/pageSize-1"><span>&raquo;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+
+
+        <div id="modal-delete-user" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Confirmation</h4>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to delete {{currentUser.firstName}}?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="delete(currentUser)">Yes</button>
+              </div>
+            </div>
+          </div>
+        </div>

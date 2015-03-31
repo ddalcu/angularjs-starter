@@ -1,0 +1,69 @@
+        <h3>Manage Customer</h3>
+        <div class="box">
+            <form name="userEdit">
+                
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">First Name</label>
+                        <input type="text" name="firstName" class="form-control" placeholder="First Name" ng-model="currentUser.firstName" required/>
+                        <span class="error" ng-show="!userEdit.firstName.$valid">Field is required</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Middle Name</label>
+                        <input type="text" class="form-control" placeholder="Middle Name" ng-model="currentUser.middleName"/>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Last Name</label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Last Name" ng-model="currentUser.lastName"/>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Nick Name</label>
+                        <input type="text" class="form-control" placeholder="Nick Name" ng-model="currentUser.nickName"/>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Gender</label>
+                        <select ng-model="currentUser.gender" class="form-control">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Title</label>
+                        <select ng-model="currentUser.title" class="form-control">
+                            <option ng-repeat="title in titles()">{{title}}</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">SSN</label>
+                        <input id="ssn" maxlength="11" type="text" class="ssn form-control" placeholder="SSN" ng-model="currentUser.ssn">
+                    </div>
+                  </div>
+                    
+                </div>
+
+
+                <div>
+                    <button type="submit" class="btn btn-primary" ng-click="save(currentUser)">Save Customer</button>
+                    <a ng-click="back()" class="btn">Back to Search</a>
+                </div>
+            </form>
+
+        </div>
